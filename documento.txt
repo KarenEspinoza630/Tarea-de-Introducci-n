@@ -1,4 +1,43 @@
-package CajeroAutomático;
+Los gatos dominaran el mundo
+Es la ultima voluntad del profesor Peñaloza!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		import java.text.DecimalFormat;
 		import java.util.Scanner;
@@ -139,13 +178,7 @@ package CajeroAutomático;
 		        } else {
 		            System.out.println("Fondos insuficientes. Tu saldo es de: $" + d.format(saldo));
 		            System.out.println("¿Deseas intentar con otra cantidad? (S/N)");
-		            ans = sc.next().charAt(0);
-
-		            if (ans == 'S'|| ans == 's') {
-		                Retiros();
-		            } else {
-		                Menu();
-		            }
+		            ans = sc.next().charA      }
 		        }
 		    }
 
@@ -201,128 +234,4 @@ package CajeroAutomático;
 		                        saldo -= monto;
 		                        System.out.println("Pago realizado con éxito.");
 		                        System.out.println("Número de referencia: " + referencia);
-		                        System.out.println("Monto pagado: $" + d.format(monto));
-		                        System.out.println("Saldo restante: $" + d.format(saldo));
-		                    } else {
-		                        System.out.println("Saldo insuficiente. Saldo actual: $" + d.format(saldo));
-		                    }
-		                    break;
-
-		                case 3:
-		                    System.out.println("\n--- PAGO DE LUZ ---");
-		                    System.out.print("Ingrese el número de referencia del servicio (solo 4 digitos): ");
-		                    sc.nextLine();  // limpiar buffer
-		                    referencia = sc.nextLine();
-		                    System.out.print("Ingrese el monto a pagar: $");
-		                    monto = sc.nextDouble();
-
-		                    if (monto <= saldo) {
-		                        saldo -= monto;
-		                        System.out.println("Pago realizado con éxito.");
-		                        System.out.println("Número de referencia: " + referencia);
-		                        System.out.println("Monto pagado: $" + d.format(monto));
-		                        System.out.println("Saldo restante: $" + d.format(saldo));
-		                    } else {
-		                        System.out.println("Saldo insuficiente. Saldo actual: $" + d.format(saldo));
-		                    }
-		                    break;
-
-		                case 4:
-		                    System.out.println("\n--- PAGO DE INTERNET ---");
-		                    System.out.print("Ingrese el número de referencia del servicio (solo 4 digitos): ");
-		                    sc.nextLine();  // limpiar buffer
-		                    referencia = sc.nextLine();
-		                    System.out.print("Ingrese el monto a pagar: $");
-		                    monto = sc.nextDouble();
-
-		                    if (monto <= saldo) {
-		                        saldo -= monto;
-		                        System.out.println("Pago realizado con éxito.");
-		                        System.out.println("Número de referencia: " + referencia);
-		                        System.out.println("Monto pagado: $" + d.format(monto));
-		                        System.out.println("Saldo restante: $" + d.format(saldo));
-		                    } else {
-		                        System.out.println("Saldo insuficiente. Saldo actual: $" + d.format(saldo));
-		                    }
-		                    break;
-
-		                case 5:
-		                    System.out.println("Regresando al menú principal...");
-		                    Menu();
-		                    return;
-
-		                default:
-		                    System.out.println("Opción no válida.");
-		            }
-
-		            System.out.print("\n¿Desea realizar otro pago de servicios? (S/N): ");
-		            ans = sc.next().charAt(0);
-
-		        } while (ans == 'S' || ans == 's');
-
-		        Menu();  // Volver al menú principal después de salir del submenú
-		    }
-		    	
-		    		
-		    
-		      public static void Transferencia() {
-		    
-		    	  // Atributos
-
-				    String p,c;
-				    int cuentaDestino;
-				    double monto;
-				    char respuesta;
-				    
-		    	  while (true) {
-		    		  System.out.println("\n\t\t\t\t--- TRANSFERENCIA BANCARIA ---");
-
-
-
-		    		  System.out.print("\nIngrese el numero de cuenta a la que desea Transferir (solo numeros; 9 digitos): ");
-		    		  cuentaDestino =sc.nextInt();
-
-		    		  System.out.print("\nIngrese el nombre del Titular de la cuenta a la que quiere transferir: ");
-		    		  sc.nextLine();//Este se usa para corregir el salto de linea en los siguientes intentos
-		    		  p=sc.nextLine();
-
-		    		  System.out.print("\nIngrese el motivo de pago: ");
-		    		  c=sc.nextLine();
-
-		    		  System.out.print("\n\nIngrese la cantidad que desea transferir: $ ");
-		    		  monto = sc.nextDouble();
-
-		    		  if (monto <= saldo) {
-		    		      saldo -= monto; // se descuenta el saldo
-
-		    		  System.out.print("\n\tSe ha Trasferido: $" +monto);
-		    		  System.out.print("\n\tA la cuenta:"+cuentaDestino);
-		    		  System.out.print("\n\tA nombre del titular:"+p);
-		    		  System.out.print("\n\tCon motivo de pago :"+c);
-		    		  System.out.print("\n\tSaldo restante: $" + saldo);
-
-		    		  } else {
-		    		      System.out.println("\n\tSaldo insuficiente. No se pudo realizar la transferencia.");
-		    		      System.out.println("\tSaldo disponible: $" + d.format(saldo));
-		    		  }
-		    		  System.out.print("\n\t¿Desea realizar otra Transferencia? (S/N): ");
-		    		  respuesta = sc.next().charAt(0);
-
-		    		  if (respuesta == 'N'|| respuesta == 'n') {
-		    		      System.out.println("\n\tMovimiento finalizado...");
-		    		      Menu();
-		    		  }
-		    		  }
-		    	 
-		    		  	}
-
-		    
-		    
-		    public static void Salir() {
-		        System.out.println(" Gracias por usar el cajero automático :)");
-		    }
-		
-		
-		
-
-	}
+		                        System.out.println("Monto pagado: $" + d.f
