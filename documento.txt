@@ -1,0 +1,328 @@
+package CajeroAutomático;
+
+		import java.text.DecimalFormat;
+		import java.util.Scanner;
+
+		public class Cajero {
+
+		    static Scanner sc = new Scanner(System.in);
+		    
+		
+		    
+		    static DecimalFormat d = new DecimalFormat("#.00");
+
+		    static int pass1 = 6885;
+		    static int pass2 = 4131;
+		    static int pass3 = 9179;
+		    static int pass;
+		    static int intentos = 1;
+		    static double saldo = 0;
+		    static float can; 
+		    static int resp;
+		    static char ans;
+
+		    public static void Portada() {
+
+		    	System.out.println("\t\t\t\t   Universidad Nacional Autonoma de México");
+		    	System.out.println("\t\t\t    Colegio de Ciencias y Humanidades Plantel Vallejo");
+		    	System.out.println("\t\t\t\t\tCibernetica y Computación 2");
+		    	System.out.println("\t\t\t\t\t     Proyecto Final");
+		    	System.out.println("\t\t\t\t\tHuerta Monroy Nancy Paola");
+		    	System.out.println("\t\t\t\t    Karen Paola Espinoza Altamirano");
+		    	System.out.println("\t\t\t\t\t  Ivan Matamoros Mendiola");
+		    	System.out.println("\t\t\t\t\t      Grupo: 609-673");
+
+		        System.out.println("\n\t\t\t\t\t ****BANCO CCH-ERO****");
+		        System.out.println("\n---C A J E R O   A U T O M Á T I C O---");
+
+		        while (intentos <= 3) {
+		            System.out.print("\nIngresa la contraseña: ");
+		            pass = sc.nextInt();
+
+		            if (pass == pass1) {
+		                System.out.println("\n\t\t\t\t\t\t\t\t\t\t* * * * B I E N V E N I D A * * * *");
+		                System.out.println("\t\t\t\t\t\t\t\t\t\t\tKaren Paola Espinoza Altamirano");
+		                break;
+		            } else if (pass == pass2) {
+		                System.out.println("\n\t\t\t\t\t\t\t\t\t\t* * * * B I E N V E N I D A * * * *");
+		                System.out.println("\t\t\t\t\t\t\t\t\t\t\tNancy Paola Huerta Monroy");
+		                break;
+		            } else if (pass == pass3) {
+		                System.out.println("\n\t\t\t\t\t\t\t\t\t\t* * * * B I E N V E N I D O * * * *");
+		                System.out.println("\t\t\t\t\t\t\t\t\t\t\tIvan Matamoros Mendiola");
+		                break;
+		            } else {
+		                System.out.println("Contraseña incorrecta. \nIntento " + intentos + " de 3.");
+		                intentos = intentos + 1;
+
+		                if (intentos > 3) {
+		                    System.out.println("\n¡¡¡ C U E N T A   B L O Q U E A D A !!!");
+		                    System.exit(0);
+		                }
+		            }
+		        }
+		    }
+		    
+		    public static void Menu() {
+		        System.out.println("\nSelecciona la opción deseada");
+		        System.out.println("1)Depositos  \n2)Retiros  \n3)Consulta de saldo  \n4)Pago de Servicios  \n5)Transferencias \n6)Salir");
+		        resp = sc.nextInt();
+
+		        switch (resp) {
+		            case 1:
+		                Depositos();
+		                break;
+		            case 2:
+		                Retiros();
+		                break;
+		            case 3:
+		                ConsultaSaldo(); 
+		                break;
+		            
+		            case 4:
+		                Pagodeservicios(); 
+		                break;
+		                
+		            case 5:
+		                Transferencia(); 
+		                break;   
+		    
+		            case 6:
+		                Salir();
+		                break;
+		                
+		            default:
+		                System.out.println("Número no encontrado");
+		                Menu();
+		        }
+		    }
+
+		    public static void Depositos() {
+		    	System.out.println("\n\t\t\t\t--- DEPOSITOS ---");
+		        System.out.println("Cantidad a ingresar: ");
+		        can = sc.nextFloat();
+		        saldo = can;
+		        System.out.println("Tu saldo es de: " + d.format(saldo));
+		        System.out.println("¿Deseas hacer otro depósito? (S/N)");
+		        ans = sc.next().charAt(0);
+
+		        if (ans == 'S'||ans == 's') {
+		            System.out.println("Cantidad a ingresar: ");
+		            can = sc.nextInt();
+		            saldo = saldo + can;
+		            System.out.println("Tu saldo es de: " + d.format(saldo));
+		            Menu();
+		        } else {
+		            Menu();
+		        }
+		    }
+		    
+		    public static void Retiros() {
+		        double retiro;
+		        System.out.println("\n\t\t\t\t--- RETIROS---");
+		        System.out.println("¿Cuánto deseas retirar?");
+		        retiro = sc.nextDouble();
+
+		        if (retiro <= saldo) {
+		            saldo = saldo - retiro;
+		            System.out.println("Retiro exitoso. Tu saldo actual es: $" + d.format(saldo));
+
+		            System.out.println("¿Deseas hacer otro retiro? (S/N)");
+		            ans = sc.next().charAt(0);
+
+		            if (ans == 'S'|| ans == 's') {
+		                Retiros();
+		            } else {
+		                Menu();
+		            }
+
+		        } else {
+		            System.out.println("Fondos insuficientes. Tu saldo es de: $" + d.format(saldo));
+		            System.out.println("¿Deseas intentar con otra cantidad? (S/N)");
+		            ans = sc.next().charAt(0);
+
+		            if (ans == 'S'|| ans == 's') {
+		                Retiros();
+		            } else {
+		                Menu();
+		            }
+		        }
+		    }
+
+		    public static void ConsultaSaldo() {
+		    	System.out.println("\n\t\t\t\t--- CONSULTA DE SALDO ---");
+		        System.out.println("Tu saldo actual es: $" + d.format(saldo));
+		        Menu(); 
+		        
+		    }
+		    public static void  Pagodeservicios() {
+		    
+		    	int opcion;
+		        double monto;
+		        String referencia;
+		        char ans;
+
+		        do {
+		            System.out.println("\n--- PAGO DE SERVICIOS ---");
+		            System.out.println("Seleccione el servicio que quiere pagar");
+		            System.out.println("1) Agua  \n2) Gas \n3) Luz   \n4) Internet  \n5) Volver al menú principal");
+
+		            opcion = sc.nextInt();
+
+		            switch(opcion) {
+		                case 1:
+		                    System.out.println("\n--- PAGO DE AGUA ---");
+		                    System.out.print("Ingrese el número de referencia del servicio (solo 4 digitos): ");
+		                    sc.nextLine();  // limpiar buffer
+		                    referencia = sc.nextLine();
+		                    System.out.print("Ingrese el monto a pagar: $");
+		                    monto = sc.nextDouble();
+
+		                    if (monto <= saldo) {
+		                        saldo -= monto;
+		                        System.out.println("Pago realizado con éxito.");
+		                        System.out.println("Número de referencia: " + referencia);
+		                        System.out.println("Monto pagado: $" + d.format(monto));
+		                        System.out.println("Saldo restante: $" + d.format(saldo));
+		                    } else {
+		                        System.out.println("Saldo insuficiente. Saldo actual: $" + d.format(saldo));
+		                    }
+		                    break;
+
+		                case 2:
+		                    System.out.println("\n--- PAGO DE GAS ---");
+		                    System.out.print("Ingrese el número de referencia del servicio (solo 4 digitos): ");
+		                    sc.nextLine();  // limpiar buffer
+		                    referencia = sc.nextLine();
+		                    System.out.print("Ingrese el monto a pagar: $");
+		                    monto = sc.nextDouble();
+
+		                    if (monto <= saldo) {
+		                        saldo -= monto;
+		                        System.out.println("Pago realizado con éxito.");
+		                        System.out.println("Número de referencia: " + referencia);
+		                        System.out.println("Monto pagado: $" + d.format(monto));
+		                        System.out.println("Saldo restante: $" + d.format(saldo));
+		                    } else {
+		                        System.out.println("Saldo insuficiente. Saldo actual: $" + d.format(saldo));
+		                    }
+		                    break;
+
+		                case 3:
+		                    System.out.println("\n--- PAGO DE LUZ ---");
+		                    System.out.print("Ingrese el número de referencia del servicio (solo 4 digitos): ");
+		                    sc.nextLine();  // limpiar buffer
+		                    referencia = sc.nextLine();
+		                    System.out.print("Ingrese el monto a pagar: $");
+		                    monto = sc.nextDouble();
+
+		                    if (monto <= saldo) {
+		                        saldo -= monto;
+		                        System.out.println("Pago realizado con éxito.");
+		                        System.out.println("Número de referencia: " + referencia);
+		                        System.out.println("Monto pagado: $" + d.format(monto));
+		                        System.out.println("Saldo restante: $" + d.format(saldo));
+		                    } else {
+		                        System.out.println("Saldo insuficiente. Saldo actual: $" + d.format(saldo));
+		                    }
+		                    break;
+
+		                case 4:
+		                    System.out.println("\n--- PAGO DE INTERNET ---");
+		                    System.out.print("Ingrese el número de referencia del servicio (solo 4 digitos): ");
+		                    sc.nextLine();  // limpiar buffer
+		                    referencia = sc.nextLine();
+		                    System.out.print("Ingrese el monto a pagar: $");
+		                    monto = sc.nextDouble();
+
+		                    if (monto <= saldo) {
+		                        saldo -= monto;
+		                        System.out.println("Pago realizado con éxito.");
+		                        System.out.println("Número de referencia: " + referencia);
+		                        System.out.println("Monto pagado: $" + d.format(monto));
+		                        System.out.println("Saldo restante: $" + d.format(saldo));
+		                    } else {
+		                        System.out.println("Saldo insuficiente. Saldo actual: $" + d.format(saldo));
+		                    }
+		                    break;
+
+		                case 5:
+		                    System.out.println("Regresando al menú principal...");
+		                    Menu();
+		                    return;
+
+		                default:
+		                    System.out.println("Opción no válida.");
+		            }
+
+		            System.out.print("\n¿Desea realizar otro pago de servicios? (S/N): ");
+		            ans = sc.next().charAt(0);
+
+		        } while (ans == 'S' || ans == 's');
+
+		        Menu();  // Volver al menú principal después de salir del submenú
+		    }
+		    	
+		    		
+		    
+		      public static void Transferencia() {
+		    
+		    	  // Atributos
+
+				    String p,c;
+				    int cuentaDestino;
+				    double monto;
+				    char respuesta;
+				    
+		    	  while (true) {
+		    		  System.out.println("\n\t\t\t\t--- TRANSFERENCIA BANCARIA ---");
+
+
+
+		    		  System.out.print("\nIngrese el numero de cuenta a la que desea Transferir (solo numeros; 9 digitos): ");
+		    		  cuentaDestino =sc.nextInt();
+
+		    		  System.out.print("\nIngrese el nombre del Titular de la cuenta a la que quiere transferir: ");
+		    		  sc.nextLine();//Este se usa para corregir el salto de linea en los siguientes intentos
+		    		  p=sc.nextLine();
+
+		    		  System.out.print("\nIngrese el motivo de pago: ");
+		    		  c=sc.nextLine();
+
+		    		  System.out.print("\n\nIngrese la cantidad que desea transferir: $ ");
+		    		  monto = sc.nextDouble();
+
+		    		  if (monto <= saldo) {
+		    		      saldo -= monto; // se descuenta el saldo
+
+		    		  System.out.print("\n\tSe ha Trasferido: $" +monto);
+		    		  System.out.print("\n\tA la cuenta:"+cuentaDestino);
+		    		  System.out.print("\n\tA nombre del titular:"+p);
+		    		  System.out.print("\n\tCon motivo de pago :"+c);
+		    		  System.out.print("\n\tSaldo restante: $" + saldo);
+
+		    		  } else {
+		    		      System.out.println("\n\tSaldo insuficiente. No se pudo realizar la transferencia.");
+		    		      System.out.println("\tSaldo disponible: $" + d.format(saldo));
+		    		  }
+		    		  System.out.print("\n\t¿Desea realizar otra Transferencia? (S/N): ");
+		    		  respuesta = sc.next().charAt(0);
+
+		    		  if (respuesta == 'N'|| respuesta == 'n') {
+		    		      System.out.println("\n\tMovimiento finalizado...");
+		    		      Menu();
+		    		  }
+		    		  }
+		    	 
+		    		  	}
+
+		    
+		    
+		    public static void Salir() {
+		        System.out.println(" Gracias por usar el cajero automático :)");
+		    }
+		
+		
+		
+
+	}
